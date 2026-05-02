@@ -93,7 +93,9 @@ irm https://raw.githubusercontent.com/thehetpatel/claude-gsap/main/install.ps1 |
 
 ### Verify Installation
 
-After installation, test with:
+Commands are installed to: `~/.claude/commands/`
+
+After installation, restart Claude Code and test with:
 ```
 /gsap fade in hero section
 ```

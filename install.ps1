@@ -5,7 +5,7 @@ $ErrorActionPreference = "Stop"
 
 # Plugin info
 $PLUGIN_NAME = "claude-gsap"
-$PLUGIN_DIR = "$env:USERPROFILE\.claude\plugins\$PLUGIN_NAME"
+$COMMANDS_DIR = "$env:USERPROFILE\.claude\commands"
 $REPO_URL = "https://github.com/thehetpatel/claude-gsap"
 
 function Write-ColorOutput {
@@ -59,27 +59,21 @@ if ((Test-Path "$ScriptDir\CLAUDE.md") -and (Test-Path "$ScriptDir\skills")) {
     }
 }
 
-# Create Claude plugins directory if it doesn't exist
-Write-ColorOutput "[->] Creating plugin directory..." "Yellow"
-$PluginsDir = "$env:USERPROFILE\.claude\plugins"
-if (-not (Test-Path $PluginsDir)) {
-    New-Item -ItemType Directory -Path $PluginsDir -Force | Out-Null
+# Create Claude commands directory if it doesn't exist
+Write-ColorOutput "[->] Creating commands directory..." "Yellow"
+if (-not (Test-Path $COMMANDS_DIR)) {
+    New-Item -ItemType Directory -Path $COMMANDS_DIR -Force | Out-Null
 }
 
-# Remove existing installation if present
-if (Test-Path $PLUGIN_DIR) {
-    Write-ColorOutput "[->] Removing existing installation..." "Yellow"
-    Remove-Item -Recurse -Force $PLUGIN_DIR
-}
-
-# Copy plugin files
-Write-ColorOutput "[->] Installing plugin files..." "Yellow"
-Copy-Item -Recurse -Force $SourceDir $PLUGIN_DIR
-
-# Remove git directory if present
-$GitDir = "$PLUGIN_DIR\.git"
-if (Test-Path $GitDir) {
-    Remove-Item -Recurse -Force $GitDir
+# Copy skill files as commands
+Write-ColorOutput "[->] Installing skill files..." "Yellow"
+Get-ChildItem -Directory "$SourceDir\skills" | ForEach-Object {
+    $skillName = $_.Name
+    $skillFile = Join-Path $_.FullName "SKILL.md"
+    if (Test-Path $skillFile) {
+        Copy-Item $skillFile "$COMMANDS_DIR\$skillName.md"
+        Write-ColorOutput "[OK] Installed: $skillName" "Green"
+    }
 }
 
 # Cleanup temp directory
@@ -90,24 +84,10 @@ if (-not $IsLocalInstall -and (Test-Path $TempDir)) {
 # Verify installation
 Write-ColorOutput "[->] Verifying installation..." "Yellow"
 
-$RequiredFiles = @(
-    ".claude-plugin\plugin.json",
-    "CLAUDE.md",
-    "skills\gsap\SKILL.md",
-    "skills\gsap-scroll\SKILL.md",
-    "skills\gsap-timeline\SKILL.md"
-)
-
-$MissingFiles = 0
-foreach ($file in $RequiredFiles) {
-    if (-not (Test-Path "$PLUGIN_DIR\$file")) {
-        Write-ColorOutput "[X] Missing: $file" "Red"
-        $MissingFiles++
-    }
-}
-
-if ($MissingFiles -gt 0) {
-    Write-ColorOutput "[X] Installation incomplete. $MissingFiles files missing." "Red"
+if (Test-Path "$COMMANDS_DIR\gsap.md") {
+    Write-ColorOutput "[OK] Verification passed" "Green"
+} else {
+    Write-ColorOutput "[X] Installation failed" "Red"
     exit 1
 }
 
@@ -117,8 +97,8 @@ Write-ColorOutput "=============================================================
 Write-ColorOutput "                Installation Complete!                          " "Green"
 Write-ColorOutput "================================================================" "Green"
 Write-Host ""
-Write-Host "Plugin installed to: " -NoNewline
-Write-ColorOutput $PLUGIN_DIR "Cyan"
+Write-Host "Commands installed to: " -NoNewline
+Write-ColorOutput $COMMANDS_DIR "Cyan"
 Write-Host ""
 Write-ColorOutput "Available Commands:" "Yellow"
 Write-Host "  /gsap [description]      Generate animation from description"

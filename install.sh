@@ -14,7 +14,7 @@ NC='\033[0m' # No Color
 
 # Plugin info
 PLUGIN_NAME="claude-gsap"
-PLUGIN_DIR="${HOME}/.claude/plugins/${PLUGIN_NAME}"
+COMMANDS_DIR="${HOME}/.claude/commands"
 REPO_URL="https://github.com/thehetpatel/claude-gsap"
 
 echo -e "${BLUE}"
@@ -53,44 +53,27 @@ else
     fi
 fi
 
-# Create Claude plugins directory if it doesn't exist
-echo -e "${YELLOW}→${NC} Creating plugin directory..."
-mkdir -p "${HOME}/.claude/plugins"
+# Create Claude commands directory if it doesn't exist
+echo -e "${YELLOW}→${NC} Creating commands directory..."
+mkdir -p "${COMMANDS_DIR}"
 
-# Remove existing installation if present
-if [ -d "${PLUGIN_DIR}" ]; then
-    echo -e "${YELLOW}→${NC} Removing existing installation..."
-    rm -rf "${PLUGIN_DIR}"
-fi
-
-# Copy plugin files
-echo -e "${YELLOW}→${NC} Installing plugin files..."
-cp -r "${SOURCE_DIR}" "${PLUGIN_DIR}"
-
-# Remove git directory if present
-rm -rf "${PLUGIN_DIR}/.git"
+# Copy skill files as commands
+echo -e "${YELLOW}→${NC} Installing skill files..."
+for skill_dir in "${SOURCE_DIR}/skills"/*/; do
+    skill_name=$(basename "$skill_dir")
+    if [ -f "${skill_dir}SKILL.md" ]; then
+        cp "${skill_dir}SKILL.md" "${COMMANDS_DIR}/${skill_name}.md"
+        echo -e "${GREEN}✓${NC} Installed: ${skill_name}"
+    fi
+done
 
 # Verify installation
 echo -e "${YELLOW}→${NC} Verifying installation..."
 
-REQUIRED_FILES=(
-    ".claude-plugin/plugin.json"
-    "CLAUDE.md"
-    "skills/gsap/SKILL.md"
-    "skills/gsap-scroll/SKILL.md"
-    "skills/gsap-timeline/SKILL.md"
-)
-
-MISSING_FILES=0
-for file in "${REQUIRED_FILES[@]}"; do
-    if [ ! -f "${PLUGIN_DIR}/${file}" ]; then
-        echo -e "${RED}✗${NC} Missing: ${file}"
-        MISSING_FILES=$((MISSING_FILES + 1))
-    fi
-done
-
-if [ ${MISSING_FILES} -gt 0 ]; then
-    echo -e "${RED}✗${NC} Installation incomplete. ${MISSING_FILES} files missing."
+if [ -f "${COMMANDS_DIR}/gsap.md" ]; then
+    echo -e "${GREEN}✓${NC} Verification passed"
+else
+    echo -e "${RED}✗${NC} Installation failed"
     exit 1
 fi
 
@@ -100,7 +83,7 @@ echo -e "${GREEN}╔════════════════════
 echo -e "${GREEN}║              Installation Complete! ✓                      ║${NC}"
 echo -e "${GREEN}╚════════════════════════════════════════════════════════════╝${NC}"
 echo -e ""
-echo -e "Plugin installed to: ${BLUE}${PLUGIN_DIR}${NC}"
+echo -e "Commands installed to: ${BLUE}${COMMANDS_DIR}${NC}"
 echo -e ""
 echo -e "${YELLOW}Available Commands:${NC}"
 echo -e "  /gsap [description]      Generate animation from description"
