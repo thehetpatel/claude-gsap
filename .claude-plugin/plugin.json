@@ -1,0 +1,69 @@
+{
+  "name": "claude-gsap",
+  "version": "1.0.0",
+  "description": "Transform natural language animation descriptions into production-ready GSAP code",
+  "author": "Het Patel",
+  "license": "MIT",
+  "homepage": "https://github.com/thehetpatel/claude-gsap",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thehetpatel/claude-gsap.git"
+  },
+  "keywords": [
+    "gsap",
+    "animation",
+    "scrolltrigger",
+    "motion",
+    "greensock",
+    "timeline",
+    "splittext",
+    "svg",
+    "3d",
+    "react",
+    "vue",
+    "nextjs",
+    "flip",
+    "draggable",
+    "inertia",
+    "scrollsmoother",
+    "physics",
+    "customease",
+    "pixiplugin",
+    "easelplugin",
+    "gsdevtools",
+    "textplugin",
+    "scrambletextplugin",
+    "canvas"
+  ],
+  "engines": {
+    "claude-code": ">=1.0.0"
+  },
+  "skills": [
+    "skills/gsap",
+    "skills/gsap-scroll",
+    "skills/gsap-timeline",
+    "skills/gsap-text",
+    "skills/gsap-svg",
+    "skills/gsap-3d",
+    "skills/gsap-effects",
+    "skills/gsap-performance",
+    "skills/gsap-framework",
+    "skills/gsap-flip",
+    "skills/gsap-draggable",
+    "skills/gsap-scroll-smoother",
+    "skills/gsap-custom-ease",
+    "skills/gsap-physics",
+    "skills/gsap-utils",
+    "skills/gsap-canvas",
+    "skills/gsap-devtools",
+    "skills/gsap-core"
+  ],
+  "agents": [
+    "agents/gsap-translator.md",
+    "agents/gsap-scroll-builder.md",
+    "agents/gsap-timeline-composer.md",
+    "agents/gsap-text-animator.md",
+    "agents/gsap-optimizer.md",
+    "agents/gsap-debugger.md"
+  ]
+}

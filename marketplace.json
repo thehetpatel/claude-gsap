@@ -1,0 +1,162 @@
+{
+  "name": "claude-gsap",
+  "displayName": "Claude GSAP Animation",
+  "version": "1.0.0",
+  "description": "Transform natural language into production-ready GSAP animations. Complete coverage of all 30 official GSAP plugins (100% FREE since Webflow's 2024 acquisition): ScrollTrigger, SplitText, Flip, Draggable, ScrollSmoother, Physics, CustomEase, PixiPlugin, and more.",
+  "author": {
+    "name": "Het Patel",
+    "url": "https://github.com/thehetpatel"
+  },
+  "license": "MIT",
+  "categories": [
+    "Animation",
+    "Frontend",
+    "Code Generation",
+    "Productivity"
+  ],
+  "tags": [
+    "gsap",
+    "animation",
+    "scrolltrigger",
+    "motion-design",
+    "greensock",
+    "timeline",
+    "splittext",
+    "svg-animation",
+    "3d-transforms",
+    "react",
+    "vue",
+    "nextjs",
+    "performance",
+    "natural-language",
+    "flip",
+    "draggable",
+    "inertia",
+    "scrollsmoother",
+    "physics",
+    "customease",
+    "utilities",
+    "pixiplugin",
+    "easelplugin",
+    "canvas",
+    "webgl",
+    "textplugin",
+    "scrambletextplugin",
+    "gsdevtools",
+    "debugging",
+    "matchmedia",
+    "responsive"
+  ],
+  "repository": "https://github.com/thehetpatel/claude-gsap",
+  "documentation": "https://github.com/thehetpatel/claude-gsap#readme",
+  "issues": "https://github.com/thehetpatel/claude-gsap/issues",
+  "icon": "animation",
+  "features": [
+    "Natural language to GSAP code translation",
+    "ScrollTrigger configuration builder",
+    "Timeline sequence composer",
+    "SplitText animation generator",
+    "SVG animation patterns (DrawSVG, MorphSVG, MotionPath)",
+    "3D transform animations",
+    "50+ effect presets",
+    "Performance optimization",
+    "React/Vue/Next.js integration",
+    "Debugging assistance",
+    "Flip plugin for layout animations (FLIP technique)",
+    "Draggable & Inertia for drag interactions",
+    "ScrollSmoother for smooth scrolling",
+    "Observer for unified input detection",
+    "CustomEase, CustomWiggle, CustomBounce",
+    "Physics2D and PhysicsProps animations",
+    "Complete gsap.utils method reference",
+    "TextPlugin for typewriter effects",
+    "ScrambleTextPlugin for decoder effects",
+    "PixiPlugin for canvas/WebGL",
+    "EaselPlugin for Adobe Animate/CreateJS",
+    "GSDevTools for debugging",
+    "gsap.context() for React/Vue cleanup",
+    "gsap.matchMedia() for responsive animations",
+    "gsap.registerEffect() for custom effects",
+    "Advanced staggers (center, edges, grid)"
+  ],
+  "commands": [
+    {
+      "name": "/gsap",
+      "description": "Generate GSAP animation from natural language description"
+    },
+    {
+      "name": "/gsap-scroll",
+      "description": "Create ScrollTrigger animations"
+    },
+    {
+      "name": "/gsap-timeline",
+      "description": "Build animation sequences"
+    },
+    {
+      "name": "/gsap-text",
+      "description": "Create text animations with SplitText"
+    },
+    {
+      "name": "/gsap-svg",
+      "description": "Generate SVG animations"
+    },
+    {
+      "name": "/gsap-3d",
+      "description": "Create 3D transform animations"
+    },
+    {
+      "name": "/gsap-effects",
+      "description": "Browse and apply effect presets"
+    },
+    {
+      "name": "/gsap-optimize",
+      "description": "Analyze and optimize GSAP code"
+    },
+    {
+      "name": "/gsap-convert",
+      "description": "Convert animations to React/Vue/Next.js"
+    },
+    {
+      "name": "/gsap-flip",
+      "description": "Create layout animations with Flip plugin"
+    },
+    {
+      "name": "/gsap-draggable",
+      "description": "Create drag, swipe, and throw interactions"
+    },
+    {
+      "name": "/gsap-smooth",
+      "description": "Setup smooth scrolling with ScrollSmoother"
+    },
+    {
+      "name": "/gsap-ease",
+      "description": "Create custom easing curves"
+    },
+    {
+      "name": "/gsap-physics",
+      "description": "Create physics-based animations"
+    },
+    {
+      "name": "/gsap-utils",
+      "description": "Use GSAP utility methods"
+    },
+    {
+      "name": "/gsap-canvas",
+      "description": "Animate PixiJS and EaselJS/CreateJS elements"
+    },
+    {
+      "name": "/gsap-debug",
+      "description": "Debug animations with GSDevTools"
+    },
+    {
+      "name": "/gsap-core",
+      "description": "Use core features (context, matchMedia, staggers)"
+    }
+  ],
+  "compatibility": {
+    "gsap": ">=3.12.0",
+    "frameworks": ["vanilla", "react", "vue", "nextjs", "svelte", "angular"]
+  },
+  "screenshots": [],
+  "changelog": "https://github.com/thehetpatel/claude-gsap/blob/main/CHANGELOG.md"
+}
